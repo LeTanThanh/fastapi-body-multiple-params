@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Path, Query
+from fastapi import FastAPI, Path, Query, Body
 
 from typing import Annotated
 
@@ -42,6 +42,20 @@ async def update_item(
   user: User
 ):
   response = {"id": id, "item": item, "user": user}
+
+  return response
+"""
+
+# Singular values in body
+"""
+@app.put("/items/{id}")
+async def update_item(
+  id: Annotated[int, Path()],
+  item: Item,
+  user: User,
+  importance: Annotated[int, Body()]
+):
+  response = {"id": id, "item": item, "user": user, "importance": importance}
 
   return response
 """
