@@ -59,3 +59,18 @@ async def update_item(
 
   return response
 """
+
+# Multiple body params and query
+"""
+@app.put("/items/{id}")
+async def update_item(
+  id: Annotated[int, Path()],
+  item: Item,
+  user: User,
+  importance: Annotated[int, Body(gt = 0)],
+  q: str | None = None
+):
+  response = {"id": id, "item": item, "user": user, "importance": importance}
+
+  return response
+"""
