@@ -3,6 +3,7 @@ from fastapi import FastAPI, Path, Query
 from typing import Annotated
 
 from models.item import Item
+from models.user import User
 
 app = FastAPI()
 
@@ -28,6 +29,19 @@ async def update_item(
 
   if item:
     response.update({"item": item})
+
+  return response
+"""
+
+# Multiple body parameters
+"""
+@app.put("/items/{id}")
+async def update_item(
+  id: Annotated[int, Path()],
+  item: Item,
+  user: User
+):
+  response = {"id": id, "item": item, "user": user}
 
   return response
 """
